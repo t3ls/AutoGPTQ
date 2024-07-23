@@ -169,6 +169,8 @@ class QuantLinear(nn.Module):
         q = torch.from_numpy(q.astype(np.int32)).to(w.device)
         self.B[:, :] = q.to(self.B.device)
         self.s[:, :] = s.to(self.s.device)
+        self.qweight = self.B
+        self.scales = self.s
         if linear.bias is not None:
             if self.bias is not None:
                 self.bias[:] = linear.bias.data.to(self.bias.device)
